@@ -56,7 +56,7 @@ def brute_force():
         s.send(username)
         print(data + "   v0idcache")
         data = s.recv(1024)
-        s.send(line + "\n")
+    	s.send(line + "\n")
         print(data + "\t" +  line)
 
         data = s.recv(1024)
